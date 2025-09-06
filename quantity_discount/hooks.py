@@ -145,6 +145,13 @@ app_license = "mit"
 # 	}
 # }
 
+doc_events = {
+    "Sales Invoice": {
+        "validate": "quantity_discount.overrides.set_qty_discount",
+    }
+}
+
+
 # Scheduled Tasks
 # ---------------
 
@@ -241,4 +248,3 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-
