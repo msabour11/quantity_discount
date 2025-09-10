@@ -147,7 +147,7 @@ app_license = "mit"
 
 doc_events = {
     "Sales Invoice": {
-        "validate": "quantity_discount.overrides.set_qty_discount",
+        "validate": "quantity_discount.overrides.apply_qty_discount",
     }
 }
 

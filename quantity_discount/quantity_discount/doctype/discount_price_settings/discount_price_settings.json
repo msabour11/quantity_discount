@@ -1,0 +1,71 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:Discount-{price_list}-{###}",
+ "creation": "2025-09-09 11:52:06.050416",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "enable",
+  "column_break_znir",
+  "price_list",
+  "section_break_leoj",
+  "discount_rate"
+ ],
+ "fields": [
+  {
+   "fieldname": "discount_rate",
+   "fieldtype": "Table",
+   "label": "Discount Rate",
+   "options": "Discount Settings Items",
+   "reqd": 1
+  },
+  {
+   "fieldname": "price_list",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Price List",
+   "options": "Price List",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "enable",
+   "fieldtype": "Check",
+   "label": "Enable"
+  },
+  {
+   "fieldname": "column_break_znir",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_leoj",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-09 11:57:51.096100",
+ "modified_by": "Administrator",
+ "module": "Quantity Discount",
+ "name": "Discount Price Settings",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
