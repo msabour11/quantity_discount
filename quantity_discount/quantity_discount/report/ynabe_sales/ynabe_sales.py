@@ -64,6 +64,12 @@ def get_columns():
             "width": 150,
         },
         {
+            "label": "Average Rate",
+            "fieldname": "average_rate",
+            "fieldtype": "Currency",
+            "width": 150,
+        },
+        {
             "label": "Cash Sale",
             "fieldname": "cash_sale",
             "fieldtype": "Currency",
@@ -110,6 +116,10 @@ def get_data(filters):
             COALESCE(final.tara_600, 0) AS tara_600,
             COALESCE(final.sale_qty, 0) AS sale_qty,
             COALESCE(final.total_sale, 0) AS total_sale,
+            CASE 
+                WHEN COALESCE(final.sale_qty, 0) = 0 THEN 0
+                ELSE ROUND(COALESCE(final.total_sale, 0) / final.sale_qty, 2)
+            END AS average_rate,
             COALESCE(final.cash_sale, 0) AS cash_sale,
             COALESCE(final.credit_sale, 0) AS credit_sale,
             COALESCE(final.online_transfer, 0) AS online_transfer,
@@ -125,6 +135,7 @@ def get_data(filters):
                 SUM(IFNULL(qty.tara_600, 0)) AS tara_600,
                 SUM(IFNULL(qty.total_qty, 0)) AS sale_qty,
 				SUM(CASE WHEN si.status IN ('Unpaid','Paid', 'Overdue','Partly Paid') THEN IFNULL(si.rounded_total, si.grand_total) ELSE 0 END) AS total_sale,
+                0 AS average_rate,
                 SUM(IFNULL(cash.total_cash, 0)) AS cash_sale,
                 SUM(CASE WHEN si.status IN ('Unpaid', 'Overdue','Partly Paid') THEN IFNULL(si.outstanding_amount) ELSE 0 END) AS credit_sale,
                 0 AS online_transfer,
@@ -168,6 +179,7 @@ def get_data(filters):
                 0 AS tara_600,
                 0 AS sale_qty,
                 0 AS total_sale,
+                0 AS average_rate,
                 0 AS cash_sale,
                 0 AS credit_sale,
                 SUM(pe.paid_amount) AS online_transfer,
@@ -195,6 +207,7 @@ def get_data(filters):
                 0 AS tara_600,
                 0 AS sale_qty,
                 0 AS total_sale,
+                0 As average_rate,
                 0 AS cash_sale,
                 0 AS credit_sale,
                 0 AS online_transfer,
@@ -233,6 +246,7 @@ def get_data(filters):
                 "tara_600": 0,
                 "sale_qty": 0,
                 "total_sale": 0,
+                "average_rate": 0,
                 "cash_sale": 0,
                 "credit_sale": 0,
                 "online_transfer": 0,
@@ -246,6 +260,7 @@ def get_data(filters):
             "tara_600",
             "sale_qty",
             "total_sale",
+            "average_rate",
             "cash_sale",
             "credit_sale",
             "online_transfer",
